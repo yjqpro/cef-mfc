@@ -12,7 +12,12 @@ project(cefmfcdemo)
 
 include(FetchContent)
 
-set (CEF_URL https://cef-builds.spotifycdn.com/cef_binary_3.2840.1513.gf7effc7_windows32.tar.bz2)
+# set (CEF_VERSION 95.7.18%2Bg0d6005e%2Bchromium-95.0.4638.69)
+set (CEF_VERSION 95.7.18+g0d6005e+chromium-95.0.4638.69)
+# set (CEF_VERSION 3.2840.1513.gf7effc7)
+set (CEF_FILE_NAME "cef_binary_${CEF_VERSION}_windows32")
+
+set (CEF_URL "https://cef-builds.spotifycdn.com/${CEF_FILE_NAME}.tar.bz2")
 FetchContent_Declare(
   download_cef
   DOWNLOAD_DIR ${CMAKE_BINARY_DIR}/downloads
@@ -23,12 +28,12 @@ FetchContent_Declare(
 
 FetchContent_MakeAvailable(download_cef)
 
-file(ARCHIVE_EXTRACT  INPUT "${CMAKE_BINARY_DIR}/downloads/cef_binary_3.2840.1513.gf7effc7_windows32.tar.bz2")
+file(ARCHIVE_EXTRACT  INPUT "${CMAKE_BINARY_DIR}/downloads/${CEF_FILE_NAME}.tar.bz2")
 # set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")
 
 set(PROXYAUTHCLIENT_ROOT "${CMAKE_SOURCE_DIR}/third_party/ProxyAuthClient")
 
-set(CEF_ROOT "${CMAKE_BINARY_DIR}/cef_binary_3.2840.1513.gf7effc7_windows32")
+set(CEF_ROOT "${CMAKE_BINARY_DIR}/${CEF_FILE_NAME}")
 
 find_package(CEF REQUIRED)
 

@@ -23,7 +23,7 @@ ClientHandler::~ClientHandler()
 
 void ClientHandler::CreateBrowser(CefWindowInfo const & info, CefBrowserSettings const & settings, CefString const & url)
 {
-   CefBrowserHost::CreateBrowser(info, this, url, settings, nullptr);
+   // CefBrowserHost::CreateBrowser(info, this, url, settings, nullptr);
 }
 
 void ClientHandler::OnAddressChange(CefRefPtr<CefBrowser> browser, CefRefPtr<CefFrame> frame, const CefString& url)
@@ -98,7 +98,7 @@ void ClientHandler::OnLoadError(CefRefPtr<CefBrowser> browser,
       "<h2>Failed to load URL " << std::string(failedUrl) <<
       " with error " << std::string(errorText) << " (" << errorCode <<
       ").</h2></body></html>";
-   frame->LoadString(ss.str(), failedUrl);
+   // frame->LoadString(ss.str(), failedUrl);
 }
 
 void ClientHandler::OnLoadingStateChange(CefRefPtr<CefBrowser> browser, bool isLoading, bool canGoBack, bool canGoForward)

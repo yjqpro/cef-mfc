@@ -49,10 +49,13 @@ void CCefMfcDemoView::OnInitialUpdate() {
   GetClientRect(&rect);
 
   CefWindowInfo info;
-  info.SetAsChild(GetSafeHwnd(), rect);
+  info.SetAsChild(GetSafeHwnd(), CefRect(rect.left, rect.top, rect.right - rect.left, rect.bottom - rect.top));
 
   CefBrowserSettings browserSettings;
-  browserSettings.web_security = STATE_DISABLED;
+
+  // Remove CefBrowserSettings.web_security since it's no longer useful
+  // https://bitbucket.org/chromiumembedded/cef/issues/3058/remove-cefbrowsersettingsweb_security
+  // browserSettings.web_security = STATE_DISABLED;
 
   m_clientHandler = new ClientHandler(this);
   m_clientHandler->CreateBrowser(info, browserSettings, CefString(m_startUrl));

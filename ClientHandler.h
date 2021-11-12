@@ -79,6 +79,23 @@ public:
                            const CefString& errorText,
                            const CefString& failedUrl) override;
 
+
+  void AddRef(void) const override {
+
+  }
+
+  bool Release(void) const override {
+    return true;
+  }
+
+  bool HasOneRef(void) const override {
+    return true;
+  }
+
+  bool HasAtLeastOneRef(void) const override {
+    return true;
+  }
+
   // This object may outlive the Delegate object so it's necessary for the
   // Delegate to detach itself before destruction.
   void DetachDelegate();
@@ -86,9 +103,9 @@ public:
 private:
   
   // Include the default reference counting implementation.
-  IMPLEMENT_REFCOUNTING(ClientHandler);
+  // IMPLEMENT_REFCOUNTING(ClientHandler);
   // Include the default locking implementation.
-  IMPLEMENT_LOCKING(ClientHandler);
+  // IMPLEMENT_LOCKING(ClientHandler);
 
 private:
    Delegate* m_delegate;
